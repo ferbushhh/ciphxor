@@ -33,15 +33,17 @@ public class CiphxorTest {
     @Test
     public void encryption() {
         try {
+
             //1
-            expectedException.expect(IllegalArgumentException.class); //проверка на шестнадцатиричную систему счисления
-            expectedException.expectMessage("This is not a hexadecimal system");
-            Ciphxor.encryption("hac1", "input.txt", "output.txt");
-            //2
             Ciphxor.encryption("ab0945efffcba", "input2.txt", "output2.txt"); //шифруем файл
             Assert.assertTrue(CiphxorTest.equals(new File("output2.txt"), new File ("test1.txt"))); //проверяем, правильно ли зашифровал
             Ciphxor.encryption("ab0945efffcba", "output2.txt", "input1.txt"); //расшифровываем файл этим же ключом
             Assert.assertTrue(CiphxorTest.equals(new File("input2.txt"), new File ("input1.txt"))); //сравниваем полученный результат
+
+            //2
+            expectedException.expect(IllegalArgumentException.class); //проверка на шестнадцатиричную систему счисления
+            expectedException.expectMessage("This is not a hexadecimal system");
+            Ciphxor.encryption("hac1", "input.txt", "output.txt");
 
         } catch (IOException e) {
             e.printStackTrace();
